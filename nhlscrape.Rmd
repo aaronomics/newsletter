@@ -1,0 +1,30 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(nhlapi)
+
+```
+
+```{r}
+game_id = 2021020260
+```
+
+```{r}
+game = nhlapi::nhl_games_feed(gameIds = game_id)[[1]]
+
+#str(game, max.level = 3)
+
+```
+
+```{r}
+plays = game$liveData$plays$allPlays
+
+goals = plays[plays$result.event == "Goal", ]
+
+colnames(goals)
+
+goals[, c(17,26,5)]
+```
+
