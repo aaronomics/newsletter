@@ -4,7 +4,7 @@ output: html_notebook
 ---
 ```{r}
 library(nhlapi)
-
+library(ggplot2)
 ```
 
 ```{r}
@@ -27,4 +27,95 @@ colnames(goals)
 
 goals[, c(17,26,5)]
 ```
+
+```{r}
+did_wings_play = function(){
+
+  #games_today = nhlapi::nhl_schedule_today()
+  
+  games_today = nhlapi::nhl_schedule_date_range("2021-12-04", "2021-12-04")[[1]]
+
+  games = games_today$dates$games[[1]]
+
+    for (i in 1:nrow(games)){
+  
+    homeid = games$teams.home.team.id[i]
+    #print(homeid)
+    awayid = games$teams.away.team.id[i]
+    #print(awayid)
+    if ( homeid == 17){
+      wings_game_id = games$gamePk[i]
+    } else if (awayid == 17) {
+      wings_game_id = games$gamePk[i]
+    }
+  }
+  return(wings_game_id)
+}
+
+game_id = did_wings_play()
+```
+
+```{r}
+season_stats = function() {
+  
+  wings_season = nhlapi::nhl_teams_stats(17, 2021)
+  
+  stats = wings_season$teamStats[[1]]
+  
+  return(stats)
+  
+}
+
+season = season_stats()[[1]]
+season
+```
+```{r}
+### single game live event stats
+
+live_feed = function() {
+  
+  todays_game = nhlapi::nhl_games_feed(game_id)[[1]]
+  plays = todays_game$liveData
+  
+  return(plays)
+}
+
+game_events = live_feed()
+```
+
+```{r}
+all_plays = game_events$plays$allPlays
+all_plays
+```
+```{r}
+all_plays$coordx = all_plays$coordinates.x + abs(min(all_plays$coordinates.x))
+all_plays$coordx = all_plays$coordinates.y + abs(min(all_plays$coordinates.y))
+
+goals = c()
+
+for (i in 1:nrow(all_plays)){
+  
+  event = all_plays$result.event[i, ]
+  
+  if (event == "Goal"){
+    append(goals, all_plays[i, ])
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
