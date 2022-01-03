@@ -217,74 +217,27 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShuaGxhcGkpXG5saWJyYXJ5KGdncGxvdDIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShuaGxhcGkpXG5saWJyYXJ5KGdncGxvdDIpXG5saWJyYXJ5KHJlYWN0YWJsZSlcbmBgYCJ9 -->
 <pre class="r"><code>library(nhlapi)
-library(ggplot2)</code></pre>
+library(ggplot2)
+library(reactable)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FtZV9pZCA9IDIwMjEwMjAyNTBcbmBgYCJ9 -->
-<pre class="r"><code>game_id = 2021020250</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FtZSA9IG5obGFwaTo6bmhsX2dhbWVzX2ZlZWQoZ2FtZUlkcyA9IGdhbWVfaWQpW1sxXV1cblxuI3N0cihnYW1lLCBtYXgubGV2ZWwgPSAzKVxuXG5gYGAifQ== -->
-<pre class="r"><code>game = nhlapi::nhl_games_feed(gameIds = game_id)[[1]]
-
-#str(game, max.level = 3)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxheXMgPSBnYW1lJGxpdmVEYXRhJHBsYXlzJGFsbFBsYXlzXG5cbmdvYWxzID0gcGxheXNbcGxheXMkcmVzdWx0LmV2ZW50ID09IFwiR29hbFwiLCBdXG5cbmNvbG5hbWVzKGdvYWxzKVxuYGBgIn0= -->
-<pre class="r"><code>plays = game$liveData$plays$allPlays
-
-goals = plays[plays$result.event == &quot;Goal&quot;, ]
-
-colnames(goals)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcInBsYXllcnNcIiAgICAgICAgICAgICAgICAgICBcInJlc3VsdC5ldmVudFwiICAgICAgICAgICAgIFxuIFszXSBcInJlc3VsdC5ldmVudENvZGVcIiAgICAgICAgICBcInJlc3VsdC5ldmVudFR5cGVJZFwiICAgICAgIFxuIFs1XSBcInJlc3VsdC5kZXNjcmlwdGlvblwiICAgICAgICBcInJlc3VsdC5zZWNvbmRhcnlUeXBlXCIgICAgIFxuIFs3XSBcInJlc3VsdC5wZW5hbHR5U2V2ZXJpdHlcIiAgICBcInJlc3VsdC5wZW5hbHR5TWludXRlc1wiICAgIFxuIFs5XSBcInJlc3VsdC5nYW1lV2lubmluZ0dvYWxcIiAgICBcInJlc3VsdC5lbXB0eU5ldFwiICAgICAgICAgIFxuWzExXSBcInJlc3VsdC5zdHJlbmd0aC5jb2RlXCIgICAgICBcInJlc3VsdC5zdHJlbmd0aC5uYW1lXCIgICAgIFxuWzEzXSBcImFib3V0LmV2ZW50SWR4XCIgICAgICAgICAgICBcImFib3V0LmV2ZW50SWRcIiAgICAgICAgICAgIFxuWzE1XSBcImFib3V0LnBlcmlvZFwiICAgICAgICAgICAgICBcImFib3V0LnBlcmlvZFR5cGVcIiAgICAgICAgIFxuWzE3XSBcImFib3V0Lm9yZGluYWxOdW1cIiAgICAgICAgICBcImFib3V0LnBlcmlvZFRpbWVcIiAgICAgICAgIFxuWzE5XSBcImFib3V0LnBlcmlvZFRpbWVSZW1haW5pbmdcIiBcImFib3V0LmRhdGVUaW1lXCIgICAgICAgICAgIFxuWzIxXSBcImFib3V0LmdvYWxzLmF3YXlcIiAgICAgICAgICBcImFib3V0LmdvYWxzLmhvbWVcIiAgICAgICAgIFxuWzIzXSBcImNvb3JkaW5hdGVzLnhcIiAgICAgICAgICAgICBcImNvb3JkaW5hdGVzLnlcIiAgICAgICAgICAgIFxuWzI1XSBcInRlYW0uaWRcIiAgICAgICAgICAgICAgICAgICBcInRlYW0ubmFtZVwiICAgICAgICAgICAgICAgIFxuWzI3XSBcInRlYW0ubGlua1wiICAgICAgICAgICAgICAgICBcInRlYW0udHJpQ29kZVwiICAgICAgICAgICAgIFxuIn0= -->
-<pre><code> [1] &quot;players&quot;                   &quot;result.event&quot;             
- [3] &quot;result.eventCode&quot;          &quot;result.eventTypeId&quot;       
- [5] &quot;result.description&quot;        &quot;result.secondaryType&quot;     
- [7] &quot;result.penaltySeverity&quot;    &quot;result.penaltyMinutes&quot;    
- [9] &quot;result.gameWinningGoal&quot;    &quot;result.emptyNet&quot;          
-[11] &quot;result.strength.code&quot;      &quot;result.strength.name&quot;     
-[13] &quot;about.eventIdx&quot;            &quot;about.eventId&quot;            
-[15] &quot;about.period&quot;              &quot;about.periodType&quot;         
-[17] &quot;about.ordinalNum&quot;          &quot;about.periodTime&quot;         
-[19] &quot;about.periodTimeRemaining&quot; &quot;about.dateTime&quot;           
-[21] &quot;about.goals.away&quot;          &quot;about.goals.home&quot;         
-[23] &quot;coordinates.x&quot;             &quot;coordinates.y&quot;            
-[25] &quot;team.id&quot;                   &quot;team.name&quot;                
-[27] &quot;team.link&quot;                 &quot;team.triCode&quot;             </code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogcGFja2FnZSDigJhyZWFjdGFibGXigJkgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjEuMlxuUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2h0bWx3aWRnZXRzJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tICAgICAgICAgXG4gIHByaW50Lmh0bWx3aWRnZXQgdG9vbHM6cnN0dWRpb1xuIn0= -->
+<pre><code>Warning: package ‘reactable’ was built under R version 4.1.2
+Registered S3 method overwritten by &#39;htmlwidgets&#39;:
+  method           from         
+  print.htmlwidget tools:rstudio</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ29hbHNbLCBjKDE3LDI2LDUpXVxuYGBgIn0= -->
-<pre class="r"><code>goals[, c(17,26,5)]</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MTAsIm5jb2wiOjMsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQnRWVXpXN1RRQkRlTkVsUkxCVlZ3QVBzQlNtVlVrdU5VMzVQYVZNSmtpWkNTVlY2bmRwYnN2Sm1wOXBkTncyUHdKbTM0QkY0R200OEFPZkMyTmhWRWpDVUk0ZXhkMmRudnZtKzJaOXg3eXp3emp6R1dKWFZLaFZXcmRPUWJSNisyV3Z2dHhtcmJkQ3N3bXFza2Y2dktlcGhGc3JZTnBtWEwxVDNyUHZOc0syak93OERjNGZoYXRVSGg2alFRSVM4ZXdVS2REZ1YvOEhLL1lrQTU1VGdBd094MFAva1hkWHZkM1ZrQkQ5SWFCR3ZiTHpnemYwZC90Wkk2L2hraXE3RndWcWEyQmRjb3k3cTkwOUJDU1A1U0liVHhFNWpxWG16WFpKMnNyQ29lUjlwaFdKYWZMd0F6WWVKTVVDMWdwMGNzWE5JaUh3SU1SamU3SlJBamVDOW1QRUJSRlM2dVhlYjIvOVZ3NU1TaE9VcXo0ak1LbUtuUUF5VzQ4cjYwUU5qaE9hdmhKcWx5dkxVNFpHUk1jbWQ2bFIyYVZlR01vNlJqMEU3MEFSQ2hGdDhJTVdGTUJRcHpCd3hJa0lGNkRFMUdoVlkzazNPeGU2QVBpcGQvWHZEQTRMdEtuSE5SMkkrUll5WGlBNzZhQ0xhaXFOellVaHM4M2taVXpCaFlsTkZvRzJtS1FVOWxUb1V2SmZvakhzTytmckFnSTRvNUlSRVhmSG0wOUpkTUNuUUJKTndrZW9namhITStERzVzd0szKy9DU2JnQ2RyUU1GWVR3WDZnK2krNGlhK3RORGJXT1VhZW0xZDZldVlTWnNmdnFydVhNYnpqRnhQalZDYWxDalpKYjdHMDdBekU4emlxdG9oRTJVOHlOaFF5TXZuVVM5aHQ4d09QZUxHbHZaRFdQc0VkbGpzZzlrSDhrK2tYMG0rMEwybGV3YjVUZldpWWEwMFFYUnd1bEY0TUMvTUNranhtN1dVdTVoeG9pU050S1h0YjZXWERGcmptM2FOa0tLZHVuMjZuZzNDSEs2bGR5MjhyKzNOSzcrckxueFBjZXE1MWliUXIrVHR3OURYUUdkemVMbG9aWmtIZkV2amRURmkrNlIxL29PSFJSeEhwM3R3cE9KWXpjL0FDUTlCVXBTQmdBQSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["about.ordinalNum"],"name":[1],"type":["chr"],"align":["left"]},{"label":["team.name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["result.description"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1st","2":"Colorado Avalanche","3":"Andre Burakovsky (5) Wrist Shot, assists: none","_rn_":"20"},{"1":"1st","2":"Colorado Avalanche","3":"Valeri Nichushkin (2) Wrist Shot, assists: Tyson Jost (2), Ryan Murray (3)","_rn_":"37"},{"1":"2nd","2":"Colorado Avalanche","3":"Cale Makar (4) Wrist Shot, assists: Nazem Kadri (13)","_rn_":"138"},{"1":"2nd","2":"Colorado Avalanche","3":"Andre Burakovsky (6) Wrist Shot, assists: Cale Makar (8), Nazem Kadri (14)","_rn_":"148"},{"1":"2nd","2":"Colorado Avalanche","3":"Cale Makar (5) Wrist Shot, assists: Darren Helm (2)","_rn_":"171"},{"1":"2nd","2":"Colorado Avalanche","3":"Erik Johnson (2) Wrist Shot, assists: Mikko Rantanen (6), Kiefer Sherwood (1)","_rn_":"187"},{"1":"3rd","2":"Colorado Avalanche","3":"Nicolas Aube-Kubel (1) Wrist Shot, assists: Tyson Jost (3), Alex Newhook (2)","_rn_":"225"},{"1":"3rd","2":"Seattle Kraken","3":"Jordan Eberle (9) Wrist Shot, assists: Marcus Johansson (3), Vince Dunn (6)","_rn_":"232"},{"1":"3rd","2":"Seattle Kraken","3":"Brandon Tanev (7) Wrist Shot, assists: Carson Soucy (1), Adam Larsson (4)","_rn_":"244"},{"1":"3rd","2":"Seattle Kraken","3":"Colin Blackwell (1) Wrist Shot, assists: Joonas Donskoi (7)","_rn_":"265"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGlkX3dpbmdzX3BsYXkgPSBmdW5jdGlvbigpe1xuXG4gICNnYW1lc190b2RheSA9IG5obGFwaTo6bmhsX3NjaGVkdWxlX3RvZGF5KClcbiAgXG4gIGdhbWVzX3RvZGF5ID0gbmhsYXBpOjpuaGxfc2NoZWR1bGVfZGF0ZV9yYW5nZShcIjIwMjEtMTItMDRcIiwgXCIyMDIxLTEyLTA0XCIpW1sxXV1cblxuICBnYW1lcyA9IGdhbWVzX3RvZGF5JGRhdGVzJGdhbWVzW1sxXV1cblxuICAgIGZvciAoaSBpbiAxOm5yb3coZ2FtZXMpKXtcbiAgXG4gICAgaG9tZWlkID0gZ2FtZXMkdGVhbXMuaG9tZS50ZWFtLmlkW2ldXG4gICAgI3ByaW50KGhvbWVpZClcbiAgICBhd2F5aWQgPSBnYW1lcyR0ZWFtcy5hd2F5LnRlYW0uaWRbaV1cbiAgICAjcHJpbnQoYXdheWlkKVxuICAgIGlmICggaG9tZWlkID09IDE3KXtcbiAgICAgIHdpbmdzX2dhbWVfaWQgPSBnYW1lcyRnYW1lUGtbaV1cbiAgICB9IGVsc2UgaWYgKGF3YXlpZCA9PSAxNykge1xuICAgICAgd2luZ3NfZ2FtZV9pZCA9IGdhbWVzJGdhbWVQa1tpXVxuICAgIH1cbiAgfVxuICByZXR1cm4od2luZ3NfZ2FtZV9pZClcbn1cblxuZ2FtZV9pZCA9IGRpZF93aW5nc19wbGF5KClcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGlkX3dpbmdzX3BsYXkgPSBmdW5jdGlvbigpe1xuXG4gIHlkYXkgPSBTeXMuRGF0ZSgpIC0gMVxuICBcbiAgZ2FtZXNfdG9kYXkgPSBuaGxhcGk6Om5obF9zY2hlZHVsZV9kYXRlX3JhbmdlKHlkYXksIHlkYXkpW1sxXV1cblxuICBnYW1lcyA9IGdhbWVzX3RvZGF5JGRhdGVzJGdhbWVzW1sxXV1cblxuICAgIGZvciAoaSBpbiAxOm5yb3coZ2FtZXMpKXtcbiAgXG4gICAgaG9tZWlkID0gZ2FtZXMkdGVhbXMuaG9tZS50ZWFtLmlkW2ldXG4gICAgI3ByaW50KGhvbWVpZClcbiAgICBhd2F5aWQgPSBnYW1lcyR0ZWFtcy5hd2F5LnRlYW0uaWRbaV1cbiAgICAjcHJpbnQoYXdheWlkKVxuICAgIGlmICggaG9tZWlkID09IDE3KXtcbiAgICAgIHdpbmdzX2dhbWVfaWQgPSBnYW1lcyRnYW1lUGtbaV1cbiAgICB9IGVsc2UgaWYgKGF3YXlpZCA9PSAxNykge1xuICAgICAgd2luZ3NfZ2FtZV9pZCA9IGdhbWVzJGdhbWVQa1tpXVxuICAgIH1cbiAgfVxuICByZXR1cm4od2luZ3NfZ2FtZV9pZClcbn1cblxuZ2FtZV9pZCA9IGRpZF93aW5nc19wbGF5KClcbmBgYCJ9 -->
 <pre class="r"><code>did_wings_play = function(){
 
-  #games_today = nhlapi::nhl_schedule_today()
+  yday = Sys.Date() - 1
   
-  games_today = nhlapi::nhl_schedule_date_range(&quot;2021-12-04&quot;, &quot;2021-12-04&quot;)[[1]]
+  games_today = nhlapi::nhl_schedule_date_range(yday, yday)[[1]]
 
   games = games_today$dates$games[[1]]
 
@@ -309,7 +262,7 @@ game_id = did_wings_play()</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2Vhc29uX3N0YXRzID0gZnVuY3Rpb24oKSB7XG4gIFxuICB3aW5nc19zZWFzb24gPSBuaGxhcGk6Om5obF90ZWFtc19zdGF0cygxNywgMjAyMSlcbiAgXG4gIHN0YXRzID0gd2luZ3Nfc2Vhc29uJHRlYW1TdGF0c1tbMV1dXG4gIFxuICByZXR1cm4oc3RhdHMpXG4gIFxufVxuXG5zZWFzb24gPSBzZWFzb25fc3RhdHMoKVtbMV1dXG5zZWFzb25cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2Vhc29uX3N0YXRzID0gZnVuY3Rpb24oKSB7XG4gIFxuICB3aW5nc19zZWFzb24gPSBuaGxhcGk6Om5obF90ZWFtc19zdGF0cygxNywgMjAyMSlcbiAgXG4gIHN0YXRzID0gd2luZ3Nfc2Vhc29uJHRlYW1TdGF0c1tbMV1dXG4gIFxuICByZXR1cm4oc3RhdHMpXG4gIFxufVxuXG5zZWFzb24gPSBzZWFzb25fc3RhdHMoKVtbMV1dXG5zZWFzb24gPSBzZWFzb25bWzFdXVxuXG5yZWFjdGFibGUoXG4gIHNlYXNvblsxOjNdLFxuICBjb2x1bW5zID0gbGlzdChcbiAgICBzdGF0LmdhbWVzUGxheWVkID0gY29sRGVmKG5hbWUgPSBcIlBsYXllZFwiKSxcbiAgICBzdGF0LldpbnMgPSBjb2xEZWYobmFtZSA9IFwiV2luc1wiKSxcbiAgICBzdGF0Lkxvc3NlcyA9IGNvbERlZihuYW1lICA9IFwiTG9zc2VzXCIpXG4gIClcbilcbmBgYCJ9 -->
 <pre class="r"><code>season_stats = function() {
   
   wings_season = nhlapi::nhl_teams_stats(17, 2021)
@@ -321,22 +274,24 @@ game_id = did_wings_play()</code></pre>
 }
 
 season = season_stats()[[1]]
-season</code></pre>
+season = season[[1]]
+
+reactable(
+  season[1:3],
+  columns = list(
+    stat.gamesPlayed = colDef(name = &quot;Played&quot;),
+    stat.Wins = colDef(name = &quot;Wins&quot;),
+    stat.Losses = colDef(name  = &quot;Losses&quot;)
+  )
+)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbiJ9 -->
-<pre><code>[[1]]</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MiwibmNvbCI6MzQsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQm4yVzIyN1RNQmlBM2ROS2kzWUdpWU1RMDdpZW04Uk4yMXpCWUtJWFRGclZJVzIzSm5HN2FKa2RKZTdHcnVCWmVCNTRFeTU0Z2cwN2lkTWMybGlLWXYrZi82UDlwNTJlWEtMdVpSY0EwQUROV2cwMFdtSUtOajVOZE1NMEFHald4YW9HbXFBajM5L0ZybjB4T1JUUHBuZ2tmUHNUUkdNbldzY2I2N3FaekpyNmdGK1ZLRkxVTUtoVG9EVlVwWXFXZEZTaVRSTkJJeld0bFhqTGdDTnRVR0dnaFNBeTA5Q05mbW5EaGdZdHpkSlRFMVk1QnQyRXc5VENzREw1RmZrWldrck5NaDFWRmE0NUhFQ3p3blBic0tCdUliUENRUnNoMkRmMXRFVEdpaEpwY0dCVkZsbURLSE5LeGtvTFJsV1J4WVpSZjFCUlkybGhvSXJjV0JrakdsbnJ1YmhadzZvTDJoaWhRVFcyVWx5dWM3TnZRYXVndmlYNWgzY29Hai8rQVZuclgwcisvdTl2T2Y1azVMRTlBRHFQWWl4dlZzWlhnZVhLV05TTFkxUU51NXM4MlpoM1R3Z1BtTXNQcHNRNXVIRHBQRndQOHBvN1BleTd2VnU5eHdtK0NYdjZjSzA4L3kxcFVYeERsTEZEcFJSeXpPRmNrb21INzRtVHlEdVIvTTZsS3F5bmtjQmpZVWlVcUIySkdFK1dUNktsei9NYVBwL1lmSzV5aTcweDdJVVRFb3lGMXdTOFdJTGpPUlplZVo1dlI1emNqc2ZIVTh4ZGxsUHoyUjBKWlBSQ3h5YVU0N2xTMjgvenNiU2ZvRmNyVU9JNjJmRTZ2K1BNOTFuQUY5VGxMaWtZSVJSNy9QNkw2M21sQ09LTXd5dkdDeGxud0xIbkNTZXE4bnVxOHVjMkM4aG5OMGdEZXE2SUNLVUVueWw0U3JBVEFlR3ZxQ2paT2JFWmRaWndQN1c2NENJY3hvWDFvczBZOFkvM1N4YUhPY00yT1p2TndxLzRtdERjbFZMa2d0RmN4a3AreXRMUVgyYUJ1UEhyaThpNDZJZk1mZHFNQWI0bEdlR2I0cUdzT3JtZHJPWVUwK3RjeWhsWEdkYVdqUVhkdEVXaUpWMGVhU3p3WEtHUTc3eE93TzZnNmo3MVVhakY3M3lMMmg0T1ZZc3FZZGZCSE1OWklCMEI4RkJRYVROZjlJTm9VMUNYL3hOYUJlVmFVQkJzTDZpTXhEbXlyeGIwK3NpUURwSm9ha2wwU1dUcC9EQjJXWDlNVExYVVR6T2hjNWVxN0ZzZS9rYThaTEVsTW80U2huN2dVblhRWFNFTklXY2NxMzFkbTNsS0V1VUdIdjRES1pPdmJ4OEpBQUE9In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["stat.gamesPlayed"],"name":[1],"type":["int"],"align":["right"]},{"label":["stat.wins"],"name":[2],"type":["chr"],"align":["left"]},{"label":["stat.losses"],"name":[3],"type":["chr"],"align":["left"]},{"label":["stat.ot"],"name":[4],"type":["chr"],"align":["left"]},{"label":["stat.pts"],"name":[5],"type":["chr"],"align":["left"]},{"label":["stat.ptPctg"],"name":[6],"type":["chr"],"align":["left"]},{"label":["stat.goalsPerGame"],"name":[7],"type":["chr"],"align":["left"]},{"label":["stat.goalsAgainstPerGame"],"name":[8],"type":["chr"],"align":["left"]},{"label":["stat.evGGARatio"],"name":[9],"type":["chr"],"align":["left"]},{"label":["stat.powerPlayPercentage"],"name":[10],"type":["chr"],"align":["left"]},{"label":["stat.powerPlayGoals"],"name":[11],"type":["chr"],"align":["left"]},{"label":["stat.powerPlayGoalsAgainst"],"name":[12],"type":["chr"],"align":["left"]},{"label":["stat.powerPlayOpportunities"],"name":[13],"type":["chr"],"align":["left"]},{"label":["stat.penaltyKillPercentage"],"name":[14],"type":["chr"],"align":["left"]},{"label":["stat.shotsPerGame"],"name":[15],"type":["chr"],"align":["left"]},{"label":["stat.shotsAllowed"],"name":[16],"type":["chr"],"align":["left"]},{"label":["stat.winScoreFirst"],"name":[17],"type":["chr"],"align":["left"]},{"label":["stat.winOppScoreFirst"],"name":[18],"type":["chr"],"align":["left"]},{"label":["stat.winLeadFirstPer"],"name":[19],"type":["chr"],"align":["left"]},{"label":["stat.winLeadSecondPer"],"name":[20],"type":["chr"],"align":["left"]},{"label":["stat.winOutshootOpp"],"name":[21],"type":["chr"],"align":["left"]},{"label":["stat.winOutshotByOpp"],"name":[22],"type":["chr"],"align":["left"]},{"label":["stat.faceOffsTaken"],"name":[23],"type":["chr"],"align":["left"]},{"label":["stat.faceOffsWon"],"name":[24],"type":["chr"],"align":["left"]},{"label":["stat.faceOffsLost"],"name":[25],"type":["chr"],"align":["left"]},{"label":["stat.faceOffWinPercentage"],"name":[26],"type":["chr"],"align":["left"]},{"label":["stat.shootingPctg"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["stat.savePctg"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["stat.penaltyKillOpportunities"],"name":[29],"type":["chr"],"align":["left"]},{"label":["stat.savePctRank"],"name":[30],"type":["chr"],"align":["left"]},{"label":["stat.shootingPctRank"],"name":[31],"type":["chr"],"align":["left"]},{"label":["team.id"],"name":[32],"type":["int"],"align":["right"]},{"label":["team.name"],"name":[33],"type":["chr"],"align":["left"]},{"label":["team.link"],"name":[34],"type":["chr"],"align":["left"]}],"data":[{"1":"31","2":"15","3":"13","4":"3","5":"33","6":"53.2","7":"2.806","8":"3.355","9":"0.9091","10":"15.7","11":"13","12":"20","13":"83","14":"76.5","15":"29.1935","16":"33.4516","17":"0.692","18":"0.333","19":"0.625","20":"0.846","21":"0.667","22":"0.389","23":"1675","24":"836","25":"839","26":"49.9","27":"9.6","28":"0.9","29":"NA","30":"NA","31":"NA","32":"17","33":"Detroit Red Wings","34":"/api/v1/teams/17","_rn_":"1"},{"1":"NA","2":"16th","3":"22nd","4":"16th","5":"18th","6":"20th","7":"18th","8":"24th","9":"19th","10":"27th","11":"26th","12":"25th","13":"22nd","14":"27th","15":"25th","16":"28th","17":"20th","18":"12th","19":"24th","20":"19th","21":"8th","22":"8th","23":"16th","24":"16th","25":"17th","26":"16th","27":"NA","28":"NA","29":"15th","30":"24th","31":"17th","32":"17","33":"Detroit Red Wings","34":"/api/v1/teams/17","_rn_":"2"}],"options":{"columns":{"min":{},"max":[10],"total":[34]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTkFcbiJ9 -->
-<pre><code>NA</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcmVhY3RhYmxlKHNlYXNvblsxOjNdLCBjb2x1bW5zID0gbGlzdChzdGF0LmdhbWVzUGxheWVkID0gY29sRGVmKG5hbWUgPSBcIlBsYXllZFwiKSwgIDogXG4gIGBjb2x1bW5zYCBuYW1lcyBtdXN0IGV4aXN0IGluIGBkYXRhYFxuIn0= -->
+<pre><code>Error in reactable(season[1:3], columns = list(stat.gamesPlayed = colDef(name = &quot;Played&quot;),  : 
+  `columns` names must exist in `data`</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMjIHNpbmdsZSBnYW1lIGxpdmUgZXZlbnQgc3RhdHNcblxubGl2ZV9mZWVkID0gZnVuY3Rpb24oKSB7XG4gIFxuICB0b2RheXNfZ2FtZSA9IG5obGFwaTo6bmhsX2dhbWVzX2ZlZWQoZ2FtZV9pZClbWzFdXVxuICBwbGF5cyA9IHRvZGF5c19nYW1lJGxpdmVEYXRhXG4gIFxuICByZXR1cm4ocGxheXMpXG59XG5cbmdhbWVfZXZlbnRzID0gbGl2ZV9mZWVkKClcbmBgYCJ9 -->
 <pre class="r"><code>### single game live event stats
@@ -368,10 +323,8 @@ all_plays</code></pre>
 <!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsX3BsYXlzJGNvb3JkeCA9IGFsbF9wbGF5cyRjb29yZGluYXRlcy54ICsgYWJzKG1pbihhbGxfcGxheXMkY29vcmRpbmF0ZXMueCkpXG5hbGxfcGxheXMkY29vcmR4ID0gYWxsX3BsYXlzJGNvb3JkaW5hdGVzLnkgKyBhYnMobWluKGFsbF9wbGF5cyRjb29yZGluYXRlcy55KSlcblxuZ29hbHMgPSBjKClcblxuZm9yIChpIGluIDE6bnJvdyhhbGxfcGxheXMpKXtcbiAgXG4gIGV2ZW50ID0gYWxsX3BsYXlzJHJlc3VsdC5ldmVudFtpLCBdXG4gIFxuICBpZiAoZXZlbnQgPT0gXCJHb2FsXCIpe1xuICAgIGFwcGVuZChnb2FscywgYWxsX3BsYXlzW2ksIF0pXG4gIH1cbn1cbmBgYCJ9 -->
-<pre class="r"><code>all_plays$coordx = all_plays$coordinates.x + abs(min(all_plays$coordinates.x))
-all_plays$coordx = all_plays$coordinates.y + abs(min(all_plays$coordinates.y))
-
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5nb2FscyA9IGMoKVxuXG5mb3IgKGkgaW4gMTpucm93KGFsbF9wbGF5cykpe1xuICBcbiAgZXZlbnQgPSBhbGxfcGxheXMkcmVzdWx0LmV2ZW50W2ksIF1cbiAgXG4gIGlmIChldmVudCA9PSBcIkdvYWxcIil7XG4gICAgYXBwZW5kKGdvYWxzLCBhbGxfcGxheXNbaSwgXSlcbiAgfVxufVxuYGBgIn0= -->
+<pre class="r"><code>
 goals = c()
 
 for (i in 1:nrow(all_plays)){
@@ -387,10 +340,72 @@ for (i in 1:nrow(all_plays)){
 <pre><code>Error in all_plays$result.event[i, ] : incorrect number of dimensions</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWxsX3BsYXlzJGNvb3JkeCA9IGFsbF9wbGF5cyRjb29yZGluYXRlcy54ICsgYWJzKG1pbihhbGxfcGxheXMkY29vcmRpbmF0ZXMueCkpXG5hbGxfcGxheXMkY29vcmR4ID0gYWxsX3BsYXlzJGNvb3JkaW5hdGVzLnkgKyBhYnMobWluKGFsbF9wbGF5cyRjb29yZGluYXRlcy55KSlcblxuYGBgIn0= -->
+<pre class="r"><code>all_plays$coordx = all_plays$coordinates.x + abs(min(all_plays$coordinates.x))
+all_plays$coordx = all_plays$coordinates.y + abs(min(all_plays$coordinates.y))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYm94c2NvcmUgPSBuaGxhcGk6Om5obF9nYW1lc19ib3hzY29yZShnYW1laWQpW1sxXV1cblxudGVhbV9pZCA9IDIgIyB1c2luZyAyIGFzIGEgc3RhbmQgaW4sIHdpbmdzJyBpZCBpcyAxN1xuXG5pZiAoYm94c2NvcmUkdGVhbXMkaG9tZSR0ZWFtJGlkID09IHRlYW1faWQpIHtcbiAgI3ByaW50KFwiV2luZ3Mgd2VyZSBob21lXCIpXG4gIGJveCA9IGJveHNjb3JlJHRlYW1zJGhvbWUkdGVhbVN0YXRzJHRlYW1Ta2F0ZXJTdGF0c1xuICBcbn0gZWxzZSBpZiAoYm94c2NvcmUkdGVhbXMkYXdheSR0ZWFtJGlkID09IHRlYW1faWQpIHtcbiAgI3ByaW50KFwiV2luZ3Mgd2VyZSBhd2F5XCIpXG4gIFxuICBib3ggPSBib3hzY29yZSR0ZWFtcyRhd2F5JHRlYW1TdGF0cyR0ZWFtU2thdGVyU3RhdHNcbiAgcGxheWVycyA9IGJveHNjb3JlJHRlYW1zJGF3YXkkcGxheWVyc1xufVxuXG5sZW5ndGgocGxheWVycylcbmBgYCJ9 -->
+<pre class="r"><code>boxscore = nhlapi::nhl_games_boxscore(gameid)[[1]]
+
+team_id = 2 # using 2 as a stand in, wings&#39; id is 17
+
+if (boxscore$teams$home$team$id == team_id) {
+  #print(&quot;Wings were home&quot;)
+  box = boxscore$teams$home$teamStats$teamSkaterStats
+  
+} else if (boxscore$teams$away$team$id == team_id) {
+  #print(&quot;Wings were away&quot;)
+  
+  box = boxscore$teams$away$teamStats$teamSkaterStats
+  players = boxscore$teams$away$players
+}
+
+length(players)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIyXG4ifQ== -->
+<pre><code>[1] 22</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBwbGF5ZXJzXG5gYGAifQ== -->
+<pre class="r"><code># players</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5wbGF5ZXJfbGlzdCA9IGxpc3QoKVxuXG5wbGF5ZXJfdGFibGUgPSBkYXRhLmZyYW1lKClcblxuZm9yIChpIGluIDE6bGVuZ3RoKHBsYXllcnMpKSB7XG4gIHBsYXllcl9saXN0W2ldID0gcGxheWVyc1tpXVxufVxuXG5mb3IgKGkgaW4gMTpsZW5ndGgocGxheWVyX2xpc3QpKSB7XG4gIFxuICBwbGF5ZXJfdGFibGVbaSwgMV0gPSBwbGF5ZXJfbGlzdFtbaV1dJHBlcnNvbiRmdWxsTmFtZVxuICAjcGxheWVyX3RhYmxlW2ksIDJdID0gcGxheWVyX2xpc3RbW2ldXSRzdGF0cyRza2F0ZXJTdGF0cyR0aW1lT25JY2VcbiAgcGxheWVyX3RhYmxlW2ksIDJdID0gcGxheWVyX2xpc3RbW2ldXSRzdGF0cyRza2F0ZXJTdGF0cyRzaG90c1xuICAjcGxheWVyX3RhYmxlW2ksIDRdID0gcGxheWVyX2xpc3RbW2ldXSRzdGF0cyRza2F0ZXJTdGF0cyRnb2Fsc1xufVxuYGBgIn0= -->
+<pre class="r"><code>
+player_list = list()
+
+player_table = data.frame()
+
+for (i in 1:length(players)) {
+  player_list[i] = players[i]
+}
+
+for (i in 1:length(player_list)) {
+  
+  player_table[i, 1] = player_list[[i]]$person$fullName
+  #player_table[i, 2] = player_list[[i]]$stats$skaterStats$timeOnIce
+  player_table[i, 2] = player_list[[i]]$stats$skaterStats$shots
+  #player_table[i, 4] = player_list[[i]]$stats$skaterStats$goals
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4geFtbampdXVtpc2VxXSA8LSB2amogOiByZXBsYWNlbWVudCBoYXMgbGVuZ3RoIHplcm9cbiJ9 -->
+<pre><code>Error in x[[jj]][iseq] &lt;- vjj : replacement has length zero</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KG5obGFwaSkNCmxpYnJhcnkoZ2dwbG90MikNCmBgYA0KDQpgYGB7cn0NCmdhbWVfaWQgPSAyMDIxMDIwMjYwDQpgYGANCg0KYGBge3J9DQpnYW1lID0gbmhsYXBpOjpuaGxfZ2FtZXNfZmVlZChnYW1lSWRzID0gZ2FtZV9pZClbWzFdXQ0KDQojc3RyKGdhbWUsIG1heC5sZXZlbCA9IDMpDQoNCmBgYA0KDQpgYGB7cn0NCnBsYXlzID0gZ2FtZSRsaXZlRGF0YSRwbGF5cyRhbGxQbGF5cw0KDQpnb2FscyA9IHBsYXlzW3BsYXlzJHJlc3VsdC5ldmVudCA9PSAiR29hbCIsIF0NCg0KY29sbmFtZXMoZ29hbHMpDQoNCmdvYWxzWywgYygxNywyNiw1KV0NCmBgYA0KDQpgYGB7cn0NCmRpZF93aW5nc19wbGF5ID0gZnVuY3Rpb24oKXsNCg0KICAjZ2FtZXNfdG9kYXkgPSBuaGxhcGk6Om5obF9zY2hlZHVsZV90b2RheSgpDQogIA0KICBnYW1lc190b2RheSA9IG5obGFwaTo6bmhsX3NjaGVkdWxlX2RhdGVfcmFuZ2UoIjIwMjEtMTItMDQiLCAiMjAyMS0xMi0wNCIpW1sxXV0NCg0KICBnYW1lcyA9IGdhbWVzX3RvZGF5JGRhdGVzJGdhbWVzW1sxXV0NCg0KICAgIGZvciAoaSBpbiAxOm5yb3coZ2FtZXMpKXsNCiAgDQogICAgaG9tZWlkID0gZ2FtZXMkdGVhbXMuaG9tZS50ZWFtLmlkW2ldDQogICAgI3ByaW50KGhvbWVpZCkNCiAgICBhd2F5aWQgPSBnYW1lcyR0ZWFtcy5hd2F5LnRlYW0uaWRbaV0NCiAgICAjcHJpbnQoYXdheWlkKQ0KICAgIGlmICggaG9tZWlkID09IDE3KXsNCiAgICAgIHdpbmdzX2dhbWVfaWQgPSBnYW1lcyRnYW1lUGtbaV0NCiAgICB9IGVsc2UgaWYgKGF3YXlpZCA9PSAxNykgew0KICAgICAgd2luZ3NfZ2FtZV9pZCA9IGdhbWVzJGdhbWVQa1tpXQ0KICAgIH0NCiAgfQ0KICByZXR1cm4od2luZ3NfZ2FtZV9pZCkNCn0NCg0KZ2FtZV9pZCA9IGRpZF93aW5nc19wbGF5KCkNCmBgYA0KDQpgYGB7cn0NCnNlYXNvbl9zdGF0cyA9IGZ1bmN0aW9uKCkgew0KICANCiAgd2luZ3Nfc2Vhc29uID0gbmhsYXBpOjpuaGxfdGVhbXNfc3RhdHMoMTcsIDIwMjEpDQogIA0KICBzdGF0cyA9IHdpbmdzX3NlYXNvbiR0ZWFtU3RhdHNbWzFdXQ0KICANCiAgcmV0dXJuKHN0YXRzKQ0KICANCn0NCg0Kc2Vhc29uID0gc2Vhc29uX3N0YXRzKClbWzFdXQ0Kc2Vhc29uDQpgYGANCmBgYHtyfQ0KIyMjIHNpbmdsZSBnYW1lIGxpdmUgZXZlbnQgc3RhdHMNCg0KbGl2ZV9mZWVkID0gZnVuY3Rpb24oKSB7DQogIA0KICB0b2RheXNfZ2FtZSA9IG5obGFwaTo6bmhsX2dhbWVzX2ZlZWQoZ2FtZV9pZClbWzFdXQ0KICBwbGF5cyA9IHRvZGF5c19nYW1lJGxpdmVEYXRhDQogIA0KICByZXR1cm4ocGxheXMpDQp9DQoNCmdhbWVfZXZlbnRzID0gbGl2ZV9mZWVkKCkNCmBgYA0KDQpgYGB7cn0NCmFsbF9wbGF5cyA9IGdhbWVfZXZlbnRzJHBsYXlzJGFsbFBsYXlzDQphbGxfcGxheXMNCmBgYA0KYGBge3J9DQphbGxfcGxheXMkY29vcmR4ID0gYWxsX3BsYXlzJGNvb3JkaW5hdGVzLnggKyBhYnMobWluKGFsbF9wbGF5cyRjb29yZGluYXRlcy54KSkNCmFsbF9wbGF5cyRjb29yZHggPSBhbGxfcGxheXMkY29vcmRpbmF0ZXMueSArIGFicyhtaW4oYWxsX3BsYXlzJGNvb3JkaW5hdGVzLnkpKQ0KDQpnb2FscyA9IGMoKQ0KDQpmb3IgKGkgaW4gMTpucm93KGFsbF9wbGF5cykpew0KICANCiAgZXZlbnQgPSBhbGxfcGxheXMkcmVzdWx0LmV2ZW50W2ksIF0NCiAgDQogIGlmIChldmVudCA9PSAiR29hbCIpew0KICAgIGFwcGVuZChnb2FscywgYWxsX3BsYXlzW2ksIF0pDQogIH0NCn0NCmBgYA0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KYGBge3J9DQpsaWJyYXJ5KG5obGFwaSkNCmxpYnJhcnkoZ2dwbG90MikNCmxpYnJhcnkocmVhY3RhYmxlKQ0KYGBgDQoNCmBgYHtyfQ0KZGlkX3dpbmdzX3BsYXkgPSBmdW5jdGlvbigpew0KDQogIHlkYXkgPSBTeXMuRGF0ZSgpIC0gMQ0KICANCiAgZ2FtZXNfdG9kYXkgPSBuaGxhcGk6Om5obF9zY2hlZHVsZV9kYXRlX3JhbmdlKHlkYXksIHlkYXkpW1sxXV0NCg0KICBnYW1lcyA9IGdhbWVzX3RvZGF5JGRhdGVzJGdhbWVzW1sxXV0NCg0KICAgIGZvciAoaSBpbiAxOm5yb3coZ2FtZXMpKXsNCiAgDQogICAgaG9tZWlkID0gZ2FtZXMkdGVhbXMuaG9tZS50ZWFtLmlkW2ldDQogICAgI3ByaW50KGhvbWVpZCkNCiAgICBhd2F5aWQgPSBnYW1lcyR0ZWFtcy5hd2F5LnRlYW0uaWRbaV0NCiAgICAjcHJpbnQoYXdheWlkKQ0KICAgIGlmICggaG9tZWlkID09IDE3KXsNCiAgICAgIHdpbmdzX2dhbWVfaWQgPSBnYW1lcyRnYW1lUGtbaV0NCiAgICB9IGVsc2UgaWYgKGF3YXlpZCA9PSAxNykgew0KICAgICAgd2luZ3NfZ2FtZV9pZCA9IGdhbWVzJGdhbWVQa1tpXQ0KICAgIH0NCiAgfQ0KICByZXR1cm4od2luZ3NfZ2FtZV9pZCkNCn0NCg0KZ2FtZV9pZCA9IGRpZF93aW5nc19wbGF5KCkNCmBgYA0KDQpgYGB7cn0NCnNlYXNvbl9zdGF0cyA9IGZ1bmN0aW9uKCkgew0KICANCiAgd2luZ3Nfc2Vhc29uID0gbmhsYXBpOjpuaGxfdGVhbXNfc3RhdHMoMTcsIDIwMjEpDQogIA0KICBzdGF0cyA9IHdpbmdzX3NlYXNvbiR0ZWFtU3RhdHNbWzFdXQ0KICANCiAgcmV0dXJuKHN0YXRzKQ0KICANCn0NCg0Kc2Vhc29uID0gc2Vhc29uX3N0YXRzKClbWzFdXQ0Kc2Vhc29uID0gc2Vhc29uW1sxXV0NCg0KIyByZWFjdGFibGUoDQojICAgc2Vhc29uWzE6M10sDQojICAgY29sdW1ucyA9IGxpc3QoDQojICAgICBzdGF0LmdhbWVzUGxheWVkID0gY29sRGVmKG5hbWUgPSAiUGxheWVkIiksDQojICAgICBzdGF0LldpbnMgPSBjb2xEZWYobmFtZSA9ICJXaW5zIiksDQojICAgICBzdGF0Lkxvc3NlcyA9IGNvbERlZihuYW1lICA9ICJMb3NzZXMiKQ0KIyAgICkNCiMgKQ0KYGBgDQoNCg0KDQpgYGB7cn0NCiMjIyBzaW5nbGUgZ2FtZSBsaXZlIGV2ZW50IHN0YXQNCmxpdmVfZmVlZCA9IGZ1bmN0aW9uKCkgew0KICANCiAgdG9kYXlzX2dhbWUgPSBuaGxhcGk6Om5obF9nYW1lc19mZWVkKGdhbWVfaWQpW1sxXV0NCiAgcGxheXMgPSB0b2RheXNfZ2FtZSRsaXZlRGF0YQ0KICANCiAgcmV0dXJuKHBsYXlzKQ0KfQ0KDQpnYW1lX2V2ZW50cyA9IGxpdmVfZmVlZCgpDQpgYGANCg0KYGBge3J9DQphbGxfcGxheXMgPSBnYW1lX2V2ZW50cyRwbGF5cyRhbGxQbGF5cw0KYWxsX3BsYXlzDQpgYGANCmBgYHtyfQ0KDQpnb2FscyA9IGMoKQ0KDQpmb3IgKGkgaW4gMTpucm93KGFsbF9wbGF5cykpew0KICANCiAgZXZlbnQgPSBhbGxfcGxheXMkcmVzdWx0LmV2ZW50W2ksIF0NCiAgDQogIGlmIChldmVudCA9PSAiR29hbCIpew0KICAgIGFwcGVuZChnb2FscywgYWxsX3BsYXlzW2ksIF0pDQogIH0NCn0NCmBgYA0KYGBge3J9DQphbGxfcGxheXMkY29vcmR4ID0gYWxsX3BsYXlzJGNvb3JkaW5hdGVzLnggKyBhYnMobWluKGFsbF9wbGF5cyRjb29yZGluYXRlcy54KSkNCmFsbF9wbGF5cyRjb29yZHggPSBhbGxfcGxheXMkY29vcmRpbmF0ZXMueSArIGFicyhtaW4oYWxsX3BsYXlzJGNvb3JkaW5hdGVzLnkpKQ0KDQpgYGANCg0KDQoNCmBgYHtyfQ0KYm94c2NvcmUgPSBuaGxhcGk6Om5obF9nYW1lc19ib3hzY29yZShnYW1laWQpW1sxXV0NCg0KdGVhbV9pZCA9IDIgIyB1c2luZyAyIGFzIGEgc3RhbmQgaW4sIHdpbmdzJyBpZCBpcyAxNw0KDQppZiAoYm94c2NvcmUkdGVhbXMkaG9tZSR0ZWFtJGlkID09IHRlYW1faWQpIHsNCiAgI3ByaW50KCJXaW5ncyB3ZXJlIGhvbWUiKQ0KICBib3ggPSBib3hzY29yZSR0ZWFtcyRob21lJHRlYW1TdGF0cyR0ZWFtU2thdGVyU3RhdHMNCiAgDQp9IGVsc2UgaWYgKGJveHNjb3JlJHRlYW1zJGF3YXkkdGVhbSRpZCA9PSB0ZWFtX2lkKSB7DQogICNwcmludCgiV2luZ3Mgd2VyZSBhd2F5IikNCiAgDQogIGJveCA9IGJveHNjb3JlJHRlYW1zJGF3YXkkdGVhbVN0YXRzJHRlYW1Ta2F0ZXJTdGF0cw0KICBwbGF5ZXJzID0gYm94c2NvcmUkdGVhbXMkYXdheSRwbGF5ZXJzDQp9DQoNCmxlbmd0aChwbGF5ZXJzKQ0KDQojIHBsYXllcnMNCmBgYA0KYGBge3J9DQoNCmBgYA0KDQoNCmBgYHtyfQ0KDQpwbGF5ZXJfbGlzdCA9IGxpc3QoKQ0KDQpwbGF5ZXJfdGFibGUgPSBkYXRhLmZyYW1lKCkNCg0KZm9yIChpIGluIDE6bGVuZ3RoKHBsYXllcnMpKSB7DQogIHBsYXllcl9saXN0W2ldID0gcGxheWVyc1tpXQ0KfQ0KDQpmb3IgKGkgaW4gMTpsZW5ndGgocGxheWVyX2xpc3QpKSB7DQogIA0KICBwbGF5ZXJfdGFibGVbaSwgMV0gPSBwbGF5ZXJfbGlzdFtbaV1dJHBlcnNvbiRmdWxsTmFtZQ0KICAjcGxheWVyX3RhYmxlW2ksIDJdID0gcGxheWVyX2xpc3RbW2ldXSRzdGF0cyRza2F0ZXJTdGF0cyR0aW1lT25JY2UNCiAgcGxheWVyX3RhYmxlW2ksIDJdID0gcGxheWVyX2xpc3RbW2ldXSRzdGF0cyRza2F0ZXJTdGF0cyRzaG90cw0KICAjcGxheWVyX3RhYmxlW2ksIDRdID0gcGxheWVyX2xpc3RbW2ldXSRzdGF0cyRza2F0ZXJTdGF0cyRnb2Fscw0KfQ0KDQpgYGANCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg==</div>
 
 
 
