@@ -3,6 +3,7 @@ title: "R Notebook"
 output: html_notebook
 ---
 ```{r}
+library(curl)
 library(nhlapi)
 library(ggplot2)
 ```
@@ -31,9 +32,10 @@ goals[, c(17,26,5)]
 ```{r}
 did_wings_play = function(){
 
+  yday = Sys.Date() - 1
   #games_today = nhlapi::nhl_schedule_today()
   
-  games_today = nhlapi::nhl_schedule_date_range("2021-12-04", "2021-12-04")[[1]]
+  games_today = nhlapi::nhl_schedule_date_range(yday, yday)[[1]]
 
   games = games_today$dates$games[[1]]
 
