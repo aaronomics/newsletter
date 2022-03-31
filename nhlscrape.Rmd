@@ -6,35 +6,15 @@ output: html_notebook
 library(curl)
 library(nhlapi)
 library(ggplot2)
-```
-
-```{r}
-game_id = 2021020260
-```
-
-```{r}
-game = nhlapi::nhl_games_feed(gameIds = game_id)[[1]]
-
-#str(game, max.level = 3)
-
-```
-
-```{r}
-plays = game$liveData$plays$allPlays
-
-goals = plays[plays$result.event == "Goal", ]
-
-colnames(goals)
-
-goals[, c(17,26,5)]
+library(reactable)
 ```
 
 ```{r}
 did_wings_play = function(){
 
   yday = Sys.Date() - 1
+
   #games_today = nhlapi::nhl_schedule_today()
-  
   games_today = nhlapi::nhl_schedule_date_range(yday, yday)[[1]]
 
   games = games_today$dates$games[[1]]
@@ -69,11 +49,20 @@ season_stats = function() {
 }
 
 season = season_stats()[[1]]
-season
-```
-```{r}
-### single game live event stats
+season = season[[1]]
 
+# reactable(
+#   season[1:3],
+#   columns = list(
+#     stat.gamesPlayed = colDef(name = "Played"),
+#     stat.Wins = colDef(name = "Wins"),
+#     stat.Losses = colDef(name  = "Losses")
+#   )
+# )
+```
+
+```{r}
+### single game live event stat
 live_feed = function() {
   
   todays_game = nhlapi::nhl_games_feed(game_id)[[1]]
@@ -115,9 +104,8 @@ abline(v=89, col='red')
 all_plays = game_events$plays$allPlays
 all_plays
 ```
+
 ```{r}
-all_plays$coordx = all_plays$coordinates.x + abs(min(all_plays$coordinates.x))
-all_plays$coordx = all_plays$coordinates.y + abs(min(all_plays$coordinates.y))
 
 goals = c()
 
@@ -132,6 +120,60 @@ for (i in 1:nrow(all_plays)){
 ```
 
 
+
+```{r}
+all_plays$coordx = all_plays$coordinates.x + abs(min(all_plays$coordinates.x))
+all_plays$coordx = all_plays$coordinates.y + abs(min(all_plays$coordinates.y))
+
+```
+
+
+
+```{r}
+boxscore = nhlapi::nhl_games_boxscore(gameid)[[1]]
+
+team_id = 2 # using 2 as a stand in, wings' id is 17
+
+if (boxscore$teams$home$team$id == team_id) {
+  #print("Wings were home")
+  box = boxscore$teams$home$teamStats$teamSkaterStats
+  
+} else if (boxscore$teams$away$team$id == team_id) {
+  #print("Wings were away")
+  
+  box = boxscore$teams$away$teamStats$teamSkaterStats
+  players = boxscore$teams$away$players
+}
+
+length(players)
+
+# players
+```
+
+```{r}
+
+```
+
+
+```{r}
+
+player_list = list()
+
+player_table = data.frame()
+
+for (i in 1:length(players)) {
+  player_list[i] = players[i]
+}
+
+for (i in 1:length(player_list)) {
+  
+  player_table[i, 1] = player_list[[i]]$person$fullName
+  #player_table[i, 2] = player_list[[i]]$stats$skaterStats$timeOnIce
+  player_table[i, 2] = player_list[[i]]$stats$skaterStats$shots
+  #player_table[i, 4] = player_list[[i]]$stats$skaterStats$goals
+}
+
+```
 
 
 
