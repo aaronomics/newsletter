@@ -82,8 +82,34 @@ live_feed = function() {
   return(plays)
 }
 
-game_events = live_feed()
 ```
+
+```{r}
+
+plays = as.data.frame(game_events$plays$allPlays)
+plays
+
+players = plays$players
+#players
+
+shots = plays[plays$result.event == "Shot",]
+shots
+
+goals = plays[plays$result.event == "Goal",]
+goals
+```
+
+```{r}
+#attempting to plot shots
+
+plot(shots$coordinates.x, shots$coordinates.y, axes = TRUE)
+abline(v=-25, col='blue')
+abline(v=25, col='blue')
+abline(v=0, col='red')
+abline(v=-89, col='red')
+abline(v=89, col='red')
+```
+
 
 ```{r}
 all_plays = game_events$plays$allPlays
