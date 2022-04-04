@@ -1,6 +1,8 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output:
+  pdf_document: default
+  html_notebook: default
 ---
 ```{r}
 library(curl)
@@ -51,31 +53,27 @@ season_stats = function() {
 season = season_stats()[[1]]
 season = season[[1]]
 
-# reactable(
-#   season[1:3],
-#   columns = list(
-#     stat.gamesPlayed = colDef(name = "Played"),
-#     stat.Wins = colDef(name = "Wins"),
-#     stat.Losses = colDef(name  = "Losses")
-#   )
-# )
 ```
 
 ```{r}
 ### single game live event stat
 live_feed = function() {
   
-  todays_game = nhlapi::nhl_games_feed(game_id)[[1]]
-  plays = todays_game$liveData
+  game_events = nhlapi::nhl_games_feed(game_id)[[1]]
+  plays = game_events$liveData
   
-  return(plays)
+  return(game_events)
 }
 
+feed = live_feed()
+feed
 ```
 
 ```{r}
 
-plays = as.data.frame(game_events$plays$allPlays)
+game_events = nhlapi::nhl_games_feed(game_id)
+
+plays = as.data.frame(game_events[[1]]$liveData$plays$allPlays)
 plays
 
 players = plays$players
@@ -98,83 +96,6 @@ abline(v=0, col='red')
 abline(v=-89, col='red')
 abline(v=89, col='red')
 ```
-
-
-```{r}
-all_plays = game_events$plays$allPlays
-all_plays
-```
-
-```{r}
-
-goals = c()
-
-for (i in 1:nrow(all_plays)){
-  
-  event = all_plays$result.event[i, ]
-  
-  if (event == "Goal"){
-    append(goals, all_plays[i, ])
-  }
-}
-```
-
-
-
-```{r}
-all_plays$coordx = all_plays$coordinates.x + abs(min(all_plays$coordinates.x))
-all_plays$coordx = all_plays$coordinates.y + abs(min(all_plays$coordinates.y))
-
-```
-
-
-
-```{r}
-boxscore = nhlapi::nhl_games_boxscore(gameid)[[1]]
-
-team_id = 2 # using 2 as a stand in, wings' id is 17
-
-if (boxscore$teams$home$team$id == team_id) {
-  #print("Wings were home")
-  box = boxscore$teams$home$teamStats$teamSkaterStats
-  
-} else if (boxscore$teams$away$team$id == team_id) {
-  #print("Wings were away")
-  
-  box = boxscore$teams$away$teamStats$teamSkaterStats
-  players = boxscore$teams$away$players
-}
-
-length(players)
-
-# players
-```
-
-```{r}
-
-```
-
-
-```{r}
-
-player_list = list()
-
-player_table = data.frame()
-
-for (i in 1:length(players)) {
-  player_list[i] = players[i]
-}
-
-for (i in 1:length(player_list)) {
-  
-  player_table[i, 1] = player_list[[i]]$person$fullName
-  #player_table[i, 2] = player_list[[i]]$stats$skaterStats$timeOnIce
-  player_table[i, 2] = player_list[[i]]$stats$skaterStats$shots
-  #player_table[i, 4] = player_list[[i]]$stats$skaterStats$goals
-}
-
-```
-
 
 
 
