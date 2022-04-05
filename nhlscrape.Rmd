@@ -95,6 +95,13 @@ abline(v=25, col='blue')
 abline(v=0, col='red')
 abline(v=-89, col='red')
 abline(v=89, col='red')
+
+plot(goals$coordinates.x, goals$coordinates.y, axes = TRUE, col="red")
+abline(v=-25, col='blue')
+abline(v=25, col='blue')
+abline(v=0, col='red')
+abline(v=-89, col='red')
+abline(v=89, col='red')
 ```
 
 
