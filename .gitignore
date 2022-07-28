@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+.RData.old
+2019full_dataset.pkl
