@@ -1,0 +1,26 @@
+{
+    "id": "FDBA0B39",
+    "path": "C:/Users/Aaron/Documents/hockey_newsletter/newsletter/nhl_stats.rmd",
+    "project_path": "nhl_stats.rmd",
+    "type": "r_markdown",
+    "hash": "1641128512",
+    "contents": "",
+    "dirty": false,
+    "created": 1658965413922.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "27,0",
+        "scrollLine": "9"
+    },
+    "folds": "10|6|15|0|\n",
+    "lastKnownWriteTime": 1658965274,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1658965464413,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,4 @@
+"0","# change column to be same name as other tables
+colnames(wings_roster[])
+"
+"1"," [1]"

@@ -1,0 +1,84 @@
+---
+title: "nhl_stats"
+output: html_document
+date: "2022-07-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F)
+```
+
+```{r}
+library(tidyverse)
+library(nhlapi)
+
+
+```
+
+```{r}
+# get full red wings roster info for 21/22 season
+wings_roster = nhlapi::nhl_teams_rosters(teamIds = 17, seasons = "20212022")
+
+# get specific roster info
+roster = wings_roster[[30]][[1]]
+
+# change column to be same name as other tables
+colnames(wings_roster[])
+
+# create vector of only players ids
+player_ids = roster$person.id
+
+########################################
+
+# get season stats
+
+season_team_stats = nhlapi::nhl_teams_stats(teamIds = 17, seasons = "20212022")
+#^^ not quite what we wanted, but that's ok
+
+# let's try again
+season_stats = nhlapi::nhl_players_seasons(teamIds = 17, seasons = "20212022")
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
