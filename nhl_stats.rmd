@@ -20,13 +20,13 @@ library(nhlapi)
 wings_roster = nhlapi::nhl_teams_rosters(teamIds = 17, seasons = "20212022")
 
 # get specific roster info
-roster = wings_roster[[30]][[1]]
+players = wings_roster[[30]][[1]]
 
 # change column to be same name as other tables
-colnames(wings_roster[])
+colnames(players)[2] = "playerId"
 
 # create vector of only players ids
-player_ids = roster$person.id
+player_ids = players$playerId
 
 ########################################
 
@@ -36,12 +36,53 @@ season_team_stats = nhlapi::nhl_teams_stats(teamIds = 17, seasons = "20212022")
 #^^ not quite what we wanted, but that's ok
 
 # let's try again
-season_stats = nhlapi::nhl_players_seasons(teamIds = 17, seasons = "20212022")
+season_stats = nhlapi::nhl_players_seasons(seasons = "20212022", playerIds = player_ids)
+  
+wings_player_sea_stats_full = merge(season_stats, players, by = "playerId")
 
+sea_stats = wings_player_sea_stats_full %>% 
+  select(-c("url", 
+            "copyright", 
+            "seasonStart", 
+            "person.link", 
+            "position.code", 
+            "position.name",
+            "position.type"))
 
+skaters = sea_stats %>% 
+  filter(position.abbreviation != "G")
 
+summary(skaters)
 
+skaters = skaters %>% 
+  select(-c("stat.ot", 
+            "stat.shutouts", 
+            "stat.ties", 
+            "stat.wins", 
+            "stat.losses", 
+            "stat.saves", 
+            "stat.powerPlaySaves", 
+            "stat.shortHandedSaves", 
+            "stat.evenSaves", 
+            "stat.shortHandedShots", 
+            "stat.evenShots", 
+            "stat.powerPlayShots", 
+            "stat.savePercentage", 
+            "stat.goalAgainstAverage", 
+            "stat.gamesStarted", 
+            "stat.shotsAgainst", 
+            "stat.goalsAgainst", 
+            "stat.powerPlaySavePercentage", 
+            "stat.shortHandedSavePercentage", 
+            "stat.evenStrengthSavePercentage"))
 
+goalies = sea_stats %>% 
+  filter(position.abbreviation == "G")
+
+summary(goalies)
+
+goalies = goalies %>% 
+  select(sumNA == 4)
 
 ```
 
