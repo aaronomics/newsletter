@@ -41,7 +41,7 @@ season_stats = nhlapi::nhl_players_seasons(seasons = "20212022", playerIds = pla
 wings_player_sea_stats_full = merge(season_stats, players, by = "playerId")
 
 sea_stats = wings_player_sea_stats_full %>% 
-  select(-c("url", 
+  dplyr::select(-c("url", 
             "copyright", 
             "seasonStart", 
             "person.link", 
@@ -50,12 +50,12 @@ sea_stats = wings_player_sea_stats_full %>%
             "position.type"))
 
 skaters = sea_stats %>% 
-  filter(position.abbreviation != "G")
+  dplyr::filter(position.abbreviation != "G")
 
 summary(skaters)
 
 skaters = skaters %>% 
-  select(-c("stat.ot", 
+  dplyr::select(-c("stat.ot", 
             "stat.shutouts", 
             "stat.ties", 
             "stat.wins", 
@@ -77,12 +77,11 @@ skaters = skaters %>%
             "stat.evenStrengthSavePercentage"))
 
 goalies = sea_stats %>% 
-  filter(position.abbreviation == "G")
+  dplyr::filter(position.abbreviation == "G")
+
+goalies = goalies[,colSums(is.na(goalies)) != 4]
 
 summary(goalies)
-
-goalies = goalies %>% 
-  select(sumNA == 4)
 
 ```
 
