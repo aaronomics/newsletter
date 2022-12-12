@@ -9,7 +9,15 @@ library(curl)
 library(nhlapi)
 library(ggplot2)
 library(reactable)
+library(tidyverse)
 ```
+
+
+
+
+This is a function to check and see if the Red Wings played the previous day.
+
+could be modified to take a teamId as a parameter to get any team.
 
 ```{r}
 did_wings_play = function(){
@@ -39,10 +47,12 @@ did_wings_play = function(){
 game_id = did_wings_play()
 ```
 
+This function returns a dataframe with all sorts of team info from the current season, as well as another data frame that contains the current season stats and ranking like goals, wins, pp%, etc. "season" and "season_ranks".
+
 ```{r}
 season_stats = function() {
   
-  wings_season = nhlapi::nhl_teams_stats(17, 2021)
+  wings_season = nhlapi::nhl_teams_stats(17, 2022)
   
   stats = wings_season$teamStats[[1]]
   
@@ -51,9 +61,13 @@ season_stats = function() {
 }
 
 season = season_stats()[[1]]
-season = season[[1]]
+season_ranks = season[[1]]
 
 ```
+
+
+This function creates a data frame called "feed" that contains all info about a
+single game.
 
 ```{r}
 ### single game live event stat
@@ -66,7 +80,7 @@ live_feed = function() {
 }
 
 feed = live_feed()
-feed
+#feed
 ```
 
 ```{r}
@@ -79,7 +93,7 @@ plays
 players = plays$players
 #players
 
-shots = plays[plays$result.event == "Shot",]
+shots = plays[plays$result.event == "Shot" | plays$result.event == "Goal",]
 shots
 
 goals = plays[plays$result.event == "Goal",]
@@ -89,14 +103,18 @@ goals
 ```{r}
 #attempting to plot shots
 
-plot(shots$coordinates.x, shots$coordinates.y, axes = TRUE)
+plot(shots$coordinates.x, shots$coordinates.y, axes = TRUE,
+     xlim = c(-100, 100),
+     ylim = c(-42.5, 42.5))
 abline(v=-25, col='blue')
 abline(v=25, col='blue')
 abline(v=0, col='red')
 abline(v=-89, col='red')
 abline(v=89, col='red')
 
-plot(goals$coordinates.x, goals$coordinates.y, axes = TRUE, col="red")
+plot(goals$coordinates.x, goals$coordinates.y, axes = TRUE, col="red",
+     xlim = c(-100, 100),
+     ylim = c(-42.5, 42.5))
 abline(v=-25, col='blue')
 abline(v=25, col='blue')
 abline(v=0, col='red')
@@ -106,10 +124,54 @@ abline(v=89, col='red')
 
 
 
+```{r}
+scrape_shots = function(ids) {
+  game_events = nhlapi::nhl_games_feed(ids)
+  plays = as.data.frame(game_events[[1]]$liveData$plays$allPlays)
+  shots = plays[plays$result.event == "Shot" | plays$result.event == "Goal",]
+  return(shots)
+}
+```
 
 
+```{r}
+# There are 82*32 = 2624 games in a season
+# for many seasons there are less games though, only 32 teams since 2021
+
+# 2018 season type 1, games go up to 111, I think type 1 is preseason
+# for 2018 type 2, we see 1272 games, not sure if this is accurate though.
+
+ids = c(2018020001:2018022625)
+
+shots2018 = data.frame()
+
+for(gameid in ids) {
+  print(gameid)
+  
+  shots2018 = bind_rows(shots2018, scrape_shots(gameid))
+}
+
+shots_clean = shots2018 %>% 
+  filter(is.na(result.emptyNet) | result.emptyNet == FALSE) %>% 
+  filter(is.na(result.strength.code) | result.strength.code == "EVEN") 
+
+# tested how many games are actually available, for 2021 it was 1312, not sure why though
+#shots2018 = scrape_shots(2021021312)
+pwd = "/Users/aaronweiss/Documents/Class_Files/1. Math 560 - Optimization/shots.csv"
+
+shots_clean <- apply(shots_clean,2,as.character)
+
+library(dplyr)
+write.csv(shots_clean, pwd, row.names = F)
+
+```
 
 
+```{r}
+games = nhl_schedule_seasons(seasons = 20212022)
+
+gameids = games[[1]]$dates$game
+```
 
 
 
